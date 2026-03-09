@@ -1,1 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
 
+<meta charset="UTF-8">
+<title>Happy Birthday PARI ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:sans-serif;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* INTRO */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:10;
+}
+
+#intro h1{
+font-size:5em;
+letter-spacing:20px;
+color:#ffd166;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{opacity:.5}
+to{opacity:1}
+}
+
+#intro button{
+margin-top:40px;
+padding:15px 40px;
+font-size:20px;
+background:#ff4d6d;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+}
+
+/* STAR BACKGROUND */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* FLOATING HEARTS */
+
+.heart{
+position:fixed;
+font-size:22px;
+color:#ff4d6d;
+animation:float 7s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+/* SECTIONS */
+
+section{
+padding:80px 20px;
+}
+
+h1{
+font-size:3em;
+color:#ff6b81;
+}
+
+h2{
+color:#ffd166;
+}
+
+/* TYPING MESSAGE */
+
+.typing{
+font-size:1.4em;
+max-width:650px;
+margin:auto;
+}
+
+/* LOVE TIMER */
+
+#timer{
+margin-top:20px;
+font-size:1.3em;
+}
+
+/* TIMELINE */
+
+.timeline{
+max-width:700px;
+margin:auto;
+}
+
+.event{
+background:rgba(255,255,255,0.1);
+padding:25px;
+margin:20px;
+border-radius:15px;
+}
+
+/* SUNFLOWERS */
+
+.field{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:40px;
+}
+
+.flower{
+width:120px;
+height:120px;
+background:gold;
+border-radius:50%;
+position:relative;
+animation:spin 12s linear infinite;
+}
+
+.flower:after{
+content:"";
+width:60px;
+height:60px;
+background:#5c3d00;
+border-radius:50%;
+position:absolute;
+top:30px;
+left:30px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0)}
+100%{transform:rotate(360deg)}
+}
+
+/* GALLERY */
+
+.gallery img{
+width:230px;
+margin:10px;
+border-radius:15px;
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.1);
+}
+
+/* CAKE */
+
+.cake{
+display:none;
+margin-top:40px;
+}
+
+.candle{
+width:10px;
+height:40px;
+background:white;
+display:inline-block;
+margin:5px;
+position:relative;
+}
+
+.flame{
+width:10px;
+height:15px;
+background:orange;
+border-radius:50%;
+position:absolute;
+top:-15px;
+animation:flicker .3s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1}
+50%{opacity:.5}
+100%{opacity:1}
+}
+
+/* BUTTON */
+
+button{
+padding:15px 40px;
+font-size:20px;
+background:#ff4d6d;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+}
+
+#secret{
+margin-top:40px;
+font-size:2em;
+color:#ffd166;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+
+<h1>PARI ✨</h1>
+
+<p>The universe has billions of stars… but my favorite one is you ❤️</p>
+
+<button onclick="startSite()">Enter</button>
+
+</div>
+
+<canvas id="stars"></canvas>
+
+<audio autoplay loop>
+<source src="song.mp3">
+</audio>
+
+<section>
+
+<h1>Happy Birthday My Love ❤️</h1>
+
+<p class="typing"></p>
+
+<div id="timer"></div>
+
+</section>
+
+<section class="timeline">
+
+<h2>Our Love Story ❤️</h2>
+
+<div class="event">
+<h3>📚 First Test Together</h3>
+<p>11 October 2025</p>
+</div>
+
+<div class="event">
+<h3>💌 First I Love You</h3>
+<p>13 November 2025</p>
+</div>
+
+<div class="event">
+<h3>🤍 First Date & First Hug</h3>
+<p>14 November 2025</p>
+</div>
+
+</section>
+
+<section>
+
+<h2>Sunflowers For You 🌻</h2>
+
+<div class="field">
+
+<div class="flower"></div>
+<div class="flower"></div>
+<div class="flower"></div>
+<div class="flower"></div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Our Memories 📸</h2>
+
+<div class="gallery">
+
+<img src="photos/photo1.jpg">
+<img src="photos/photo2.jpg">
+<img src="photos/photo3.jpg">
+
+</div>
+
+</section>
+
+<section>
+
+<button onclick="reveal()">Click For Your Surprise 🎁</button>
+
+<div class="cake" id="cake">
+
+<h2>🎂 Happy Birthday PARI 🎂</h2>
+
+<div>
+
+<div class="candle"><div class="flame"></div></div>
+<div class="candle"><div class="flame"></div></div>
+<div class="candle"><div class="flame"></div></div>
+<div class="candle"><div class="flame"></div></div>
+<div class="candle"><div class="flame"></div></div>
+
+</div>
+
+</div>
+
+<h2 id="secret"></h2>
+
+</section>
+
+<script>
+
+/* START SITE */
+
+function startSite(){
+document.getElementById("intro").style.display="none";
+}
+
+/* TYPING MESSAGE */
+
+const message="You are the most beautiful soul I have ever known. Loving you is the best thing that ever happened to me.";
+
+let i=0;
+
+function typing(){
+if(i<message.length){
+document.querySelector(".typing").innerHTML+=message.charAt(i);
+i++;
+setTimeout(typing,50);
+}
+}
+
+typing();
+
+/* LOVE TIMER */
+
+const start=new Date("Oct 11 2025");
+
+function updateTimer(){
+
+let now=new Date();
+
+let diff=now-start;
+
+let days=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("timer").innerHTML="I've loved every moment of the last "+days+" days with you ❤️";
+
+}
+
+setInterval(updateTimer,1000);
+
+/* STARS */
+
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let stars=[];
+
+for(let i=0;i<200;i++){
+
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2
+});
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+/* FLOATING HEARTS */
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
+
+},500);
+
+/* FINAL SURPRISE */
+
+function reveal(){
+
+document.getElementById("cake").style.display="block";
+
+document.getElementById("secret").innerHTML="Out of 8 billion people in this world, somehow I found you. I would choose you again in every lifetime. I love you forever PARI ❤️";
+
+}
+
+</script>
+
+</body>
+</html>
