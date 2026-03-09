@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday My Soulmate | Pari 🎀</title>
+    <title>Infinity & Beyond | Pari 🎀</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Dancing+Script:wght@700&family=Montserrat:wght@100;300;400;700;900&family=Playfair+Display:ital,wght@0,400;1,700;1,900&family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-deep: #030303;
+            --bg-deep: #020202;
             --rose: #ff4d6d;
             --sunflower: #ffc300;
-            --stem: #2d5a27;
-            --glass: rgba(0, 0, 0, 0.35); /* Super transparent to see her photo clearly */
-            --border: rgba(255, 255, 255, 0.1);
+            --stem: #1e3d14;
+            /* Ultra-transparent glass to let her beauty shine through */
+            --glass: rgba(0, 0, 0, 0.25); 
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,11 +33,11 @@
             position: fixed; inset: 0;
             background: #000; z-index: 100000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: transform 2.2s cubic-bezier(0.8, 0, 0.2, 1);
+            transition: transform 2.5s cubic-bezier(0.8, 0, 0.2, 1);
         }
 
-        .gate-label { font-family: 'Montserrat'; letter-spacing: 12px; color: var(--rose); margin-bottom: 20px; font-size: 0.75rem; }
-        .gate-title { font-family: 'Cinzel'; font-size: 3rem; letter-spacing: 15px; margin-bottom: 45px; text-align: center; }
+        .gate-label { font-family: 'Montserrat'; letter-spacing: 12px; color: var(--rose); margin-bottom: 20px; font-size: 0.7rem; }
+        .gate-title { font-family: 'Cinzel'; font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 15px; margin-bottom: 45px; text-align: center; }
 
         .btn-unfold {
             background: transparent; border: 1px solid white; color: white;
@@ -63,89 +64,87 @@
 
         /* --- CHAPTER ARCHITECTURE --- */
         .chapter {
-            position: relative; min-height: 130vh; display: flex;
+            position: relative; min-height: 140vh; display: flex;
             align-items: center; justify-content: center; padding: 120px 5%;
         }
 
         .photo-bg {
             position: absolute; inset: 0; background-size: cover; background-position: center;
-            background-attachment: fixed; filter: brightness(0.45); z-index: 2;
+            background-attachment: fixed; filter: brightness(0.5); z-index: 2; /* Increased brightness for visibility */
         }
 
         .glass-content {
             position: relative; z-index: 10;
-            background: var(--glass); backdrop-filter: blur(10px);
-            border: 1px solid var(--border); padding: 90px 45px;
-            max-width: 880px; width: 100%; text-align: center;
-            border-radius: 4px;
-            opacity: 0; transform: translateY(90px); transition: 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--glass); backdrop-filter: blur(4px); /* Lower blur to see her soul */
+            border: 1px solid var(--border); padding: 70px 40px;
+            max-width: 800px; width: 100%; text-align: center;
+            border-radius: 8px;
+            opacity: 0; transform: translateY(90px); transition: 2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .glass-content.show { opacity: 1; transform: translateY(0); }
 
-        .ch-tag { font-family: 'Montserrat'; letter-spacing: 12px; color: var(--rose); font-size: 0.75rem; margin-bottom: 30px; display: block; }
-        .ch-title { font-family: 'Playfair Display'; font-size: 3.8rem; font-style: italic; margin-bottom: 40px; line-height: 1.1; }
-        .ch-p { font-size: 1.6rem; line-height: 2.0; font-weight: 300; color: #ffffff; }
-        .bold-rose { color: var(--rose); font-weight: 700; text-shadow: 0 0 10px rgba(255, 77, 109, 0.3); }
+        .ch-tag { font-family: 'Montserrat'; letter-spacing: 12px; color: var(--rose); font-size: 0.7rem; margin-bottom: 30px; display: block; }
+        .ch-title { font-family: 'Playfair Display'; font-size: clamp(2rem, 8vw, 3.8rem); font-style: italic; margin-bottom: 40px; line-height: 1.1; }
+        .ch-p { font-size: clamp(1.1rem, 3vw, 1.6rem); line-height: 2.0; font-weight: 300; color: #ffffff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .bold-rose { color: var(--rose); font-weight: 700; text-shadow: 0 0 10px rgba(255, 77, 109, 0.4); }
 
         /* --- THE BOTANICAL GARDEN STAGE --- */
         .garden-stage {
-            min-height: 150vh; background: #000; text-align: center;
+            min-height: 160vh; background: #000; text-align: center;
             padding: 120px 0; display: flex; flex-direction: column; justify-content: center;
         }
         #garden-floor {
             width: 100%; height: 650px; position: relative;
             display: flex; justify-content: center; align-items: flex-end;
-            perspective: 1800px; overflow: hidden;
+            perspective: 2000px; overflow: hidden;
         }
 
-        /* Botanical Logic: Tulip */
+        /* Botanical Logic: Real Tulip Shape */
         .tulip { position: absolute; transform-style: preserve-3d; animation: sway 8s ease-in-out infinite; transform-origin: bottom center; }
         .tulip-head {
-            position: absolute; width: 45px; height: 60px; background: var(--rose);
-            border-radius: 50% 50% 15% 15%; top: -60px; left: -20px; transform-style: preserve-3d;
+            position: absolute; width: 40px; height: 55px; top: -55px; left: -20px; transform-style: preserve-3d;
         }
         .tulip-petal {
-            position: absolute; width: 100%; height: 100%; background: inherit;
-            border-radius: inherit; border: 1px solid rgba(0,0,0,0.15); opacity: 0.95;
+            position: absolute; width: 40px; height: 55px; background: linear-gradient(to bottom, #ff758f, var(--rose));
+            border-radius: 50% 50% 15% 15%; border: 0.5px solid rgba(0,0,0,0.1); opacity: 0.98;
+            transform-origin: bottom center;
         }
 
-        /* Botanical Logic: Sunflower */
+        /* Botanical Logic: Full Sunflower */
         .sunflower { position: absolute; transform-style: preserve-3d; animation: sway 9s ease-in-out infinite; transform-origin: bottom center; }
         .sun-head {
-            position: absolute; width: 90px; height: 90px; top: -90px; left: -43px;
+            position: absolute; width: 100px; height: 100px; top: -100px; left: -50px;
             display: flex; justify-content: center; align-items: center; transform-style: preserve-3d;
         }
         .sun-center {
-            width: 35px; height: 35px; background: #2b1d12; border-radius: 50%;
-            z-index: 10; box-shadow: inset 0 0 12px #000;
+            width: 38px; height: 38px; background: radial-gradient(circle, #3d2b1f, #1a110a); border-radius: 50%;
+            z-index: 10; box-shadow: inset 0 0 10px #000;
         }
         .sun-petal {
-            position: absolute; width: 14px; height: 45px; background: var(--sunflower);
-            border-radius: 50% 50% 20% 20%; transform-origin: bottom center; bottom: 50%;
-            border: 1px solid rgba(0,0,0,0.05);
+            position: absolute; width: 12px; height: 48px; background: linear-gradient(to top, var(--sunflower), #ffea00);
+            border-radius: 50% 50% 10% 10%; transform-origin: bottom center; bottom: 50%;
         }
 
-        .stem { width: 5px; background: linear-gradient(to top, #0d1a08, var(--stem)); border-radius: 10px; }
+        .stem { width: 4px; background: linear-gradient(to top, #0d1a08, var(--stem)); border-radius: 10px; }
 
         /* --- FINAL ETERNAL VOW --- */
-        .final-vow { padding: 220px 10%; text-align: center; background: #000; position: relative; }
+        .final-vow { padding: 220px 10%; text-align: center; background: #000; }
         .reveal-btn {
             background: var(--rose); color: #fff; border: none; padding: 28px 85px;
             font-family: 'Montserrat'; font-weight: 900; letter-spacing: 6px;
             cursor: pointer; box-shadow: 0 15px 50px rgba(255, 77, 109, 0.5);
             transition: 0.5s;
         }
-        .reveal-btn:hover { background: #fff; color: #000; transform: translateY(-5px); }
 
         #secret-note {
-            display: none; margin-top: 110px; padding: 90px 50px; border: 1px solid var(--rose);
+            display: none; margin-top: 110px; padding: 90px 40px; border: 1px solid var(--rose);
             background: rgba(255, 77, 109, 0.05); border-radius: 4px; animation: blurReveal 3s forwards;
         }
 
-        @keyframes blurReveal { from { filter: blur(25px); opacity: 0; transform: scale(1.05); } to { filter: blur(0); opacity: 1; transform: scale(1); } }
-        @keyframes sway { 0%, 100% { transform: rotate(-3deg) translateX(0); } 50% { transform: rotate(3deg) translateX(10px); } }
+        @keyframes blurReveal { from { filter: blur(25px); opacity: 0; } to { filter: blur(0); opacity: 1; } }
+        @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
 
-        footer { padding: 120px; text-align: center; font-family: 'Montserrat'; font-size: 0.65rem; letter-spacing: 15px; opacity: 0.25; text-transform: uppercase; }
+        footer { padding: 120px; text-align: center; font-family: 'Montserrat'; font-size: 0.6rem; letter-spacing: 15px; opacity: 0.25; }
     </style>
 </head>
 <body>
@@ -153,7 +152,7 @@
     <canvas id="ambient-canvas"></canvas>
 
     <div id="gatekeeper">
-        <span class="gate-label">ESTABLISHED FOR ETERNITY</span>
+        <span class="gate-label">BEYOND THE END OF TIME</span>
         <h1 class="gate-title">PARI'S BIRTHDAY</h1>
         <button class="btn-unfold" onclick="initExperience()">Unfold the Universe</button>
     </div>
@@ -161,19 +160,19 @@
     <audio id="bg-music" loop><source src="song.mp3" type="audio/mpeg"></audio>
 
     <section class="hero">
-        <h2 class="hero-sub">Happy Birthday, My Soulmate</h2>
+        <h2 class="hero-sub">Happy Birthday, My Entire World</h2>
         <h1 class="hero-main">Pari</h1>
-        <p style="margin-top: 60px; letter-spacing: 15px; opacity: 0.4; font-size: 0.75rem;">SCROLL TO WITNESS PERFECTION</p>
+        <p style="margin-top: 60px; letter-spacing: 15px; opacity: 0.4; font-size: 0.7rem;">DESCEND INTO OUR INFINITY</p>
     </section>
 
     <section class="chapter">
         <div class="photo-bg" style="background-image: url('photos/photo1.jpg');"></div>
         <div class="glass-content">
             <span class="ch-tag">Chapter 01</span>
-            <h2 class="ch-title">A Million Happy Returns</h2>
+            <h2 class="ch-title">The Gift of Your Presence</h2>
             <p class="ch-p">
-                Today isn't just a date on the calendar; it's a cosmic celebration of the day the world became fundamentally brighter because <span class="bold-rose">you</span> were born. 
-                Pari, you are the most beautiful soulmate I could have ever found.
+                Today isn't just a birthday; it's a celebration of the day the world became fundamentally better because <span class="bold-rose">you</span> exist. 
+                Pari, you are the most beautiful human I have ever encountered.
             </p>
         </div>
     </section>
@@ -182,7 +181,7 @@
         <div class="photo-bg" style="background-image: url('photos/photo2.jpg');"></div>
         <div class="glass-content">
             <span class="ch-tag">Chapter 02</span>
-            <h2 class="ch-title">Those Perfect Eyes</h2>
+            <h2 class="ch-title">My Eternal Anchor</h2>
             <p class="ch-p">
                 Whenever I look at you, I see a clarity I've never found anywhere else. You are perfect, Pari. 
                 Not just in how you look, but in how you handle life, how you handle me, and how you keep my world balanced.
@@ -194,50 +193,49 @@
         <div class="photo-bg" style="background-image: url('photos/photo3.jpg');"></div>
         <div class="glass-content">
             <span class="ch-tag">Chapter 03</span>
-            <h2 class="ch-title">My Absolute Anchor</h2>
+            <h2 class="ch-title">The Missing Piece</h2>
             <p class="ch-p">
-                I have never felt this attached or connected to anyone else in my entire life. Being your <span class="bold-rose">soulmate</span> is the greatest privilege I will ever hold. 
-                You are the kindest human I have ever encountered.
+                I have never felt this attached or connected to anyone else in my entire life. You are my <span class="bold-rose">home</span>, 
+                and being loved by you is the greatest privilege I will ever hold.
             </p>
         </div>
     </section>
 
     <section class="garden-stage">
-        <span class="ch-tag">A Special Tribute</span>
+        <span class="ch-tag">Our Living Tribute</span>
         <h2 class="ch-title" style="color:#fff; margin-bottom: 30px;">Tulips & Sunflowers</h2>
-        <p class="ch-p" style="font-size: 1.2rem; opacity: 0.7; margin-bottom: 50px;">Real blooms for the one who makes my world flower.</p>
+        <p class="ch-p" style="font-size: 1.2rem; opacity: 0.7; margin-bottom: 50px;">A garden that sways for the one who makes my heart bloom.</p>
         <div id="garden-floor"></div>
     </section>
 
     <section class="chapter">
-        <div class="photo-bg" style="background-image: url('photos/photo1.jpg'); filter: brightness(0.25) saturate(0.5);"></div>
+        <div class="photo-bg" style="background-image: url('photos/photo1.jpg'); filter: brightness(0.3) saturate(0.6);"></div>
         <div class="glass-content">
             <span class="ch-tag">Chapter 04</span>
-            <h2 class="ch-title">The Depth of Us</h2>
+            <h2 class="ch-title">The Unbreakable Vow</h2>
             <p class="ch-p">
-                If I ever seem too protective, it's because I've realized a profound truth: 
-                <span class="bold-rose">The fear of losing you is greater than the fear of losing myself.</span> 
-                You are the air in my lungs, and my only goal is to celebrate the next 50 birthdays by your side.
+                If I ever seem protective, it's because I've realized <span class="bold-rose">the fear of losing you is greater than the fear of losing myself.</span> 
+                I don't just want the next 50 years. I want <span class="bold-rose">every single day</span> until the day I die.
             </p>
         </div>
     </section>
 
     <section class="final-vow">
-        <h2 style="font-family: 'Playfair Display'; font-size: 2.8rem; margin-bottom: 90px; line-height: 1.6; font-weight: 400;">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 90px; line-height: 1.6; font-weight: 400;">
             "I would choose you over anyone or anything in this world without a second thought."
         </h2>
         <button class="reveal-btn" onclick="revealTruth()">The Eternal Answer 💌</button>
         
         <div id="secret-note">
-            <h3 style="font-family: 'Cinzel'; color: var(--rose); margin-bottom: 35px; letter-spacing: 6px;">WHY YOU ARE SPECIAL</h3>
+            <h3 style="font-family: 'Cinzel'; color: var(--rose); margin-bottom: 35px; letter-spacing: 6px;">BEYOND THE END</h3>
             <p class="ch-p" style="font-style: italic; font-size: 1.8rem;">
-                Because I have never felt this attached or connected to anyone else in my life. You are my soulmate, Pari. 
-                Happy Birthday. Always & Forever.
+                Because I have never felt this attached or connected to anyone else. You are my everything, Pari. 
+                Happy Birthday. Every day, every second, forever yours.
             </p>
         </div>
     </section>
 
-    <footer>CRAFTED WITH ETERNAL LOVE FOR PARI | 2026</footer>
+    <footer>FOR THE ONE WHO HOLDS MY HEART | 2026</footer>
 
     <script>
         const canvas = document.getElementById('ambient-canvas');
@@ -253,10 +251,10 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = canvas.height + Math.random() * 100;
-                this.size = Math.random() * 6 + 2;
-                this.speed = Math.random() * 1.5 + 0.5;
+                this.size = Math.random() * 5 + 1;
+                this.speed = Math.random() * 1.2 + 0.3;
                 this.color = Math.random() > 0.6 ? '#ff4d6d' : '#ffc300';
-                this.opacity = Math.random() * 0.7 + 0.1;
+                this.opacity = Math.random() * 0.5 + 0.1;
             }
             update() { this.y -= this.speed; if(this.y < -15) this.reset(); }
             draw() {
@@ -266,7 +264,7 @@
             }
         }
 
-        function initParticles() { for(let i=0; i<90; i++) particles.push(new Particle()); }
+        function initParticles() { for(let i=0; i<100; i++) particles.push(new Particle()); }
         function animateParticles() {
             ctx.clearRect(0,0,canvas.width,canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
@@ -275,26 +273,28 @@
 
         function createGarden() {
             const floor = document.getElementById('garden-floor');
-            const total = 16;
+            const total = 18;
             for(let i=0; i<total; i++) {
-                const isTulip = i % 2 === 0;
+                // Ratio: 2 Tulips for every 1 Sunflower
+                const type = (i % 3 === 0) ? 'sunflower' : 'tulip';
                 const flower = document.createElement('div');
-                flower.className = isTulip ? 'tulip' : 'sunflower';
-                flower.style.left = (i * (100/total)) + (Math.random()*6) + '%';
-                flower.style.animationDelay = (i * 0.35) + 's';
+                flower.className = type;
+                flower.style.left = (i * (100/total)) + (Math.random()*4) + '%';
+                flower.style.animationDelay = (i * 0.4) + 's';
                 
-                const h = 220 + Math.random() * 280;
+                const h = 250 + Math.random() * 250;
                 const stem = document.createElement('div');
                 stem.className = 'stem';
                 stem.style.height = h + 'px';
                 
-                if(isTulip) {
+                if(type === 'tulip') {
                     const head = document.createElement('div');
                     head.className = 'tulip-head';
-                    for(let j=0; j<4; j++) {
+                    // 3-Petal Tulip Cup
+                    for(let j=0; j<3; j++) {
                         const p = document.createElement('div');
                         p.className = 'tulip-petal';
-                        p.style.transform = `rotateY(${j*90}deg) rotateX(15deg)`;
+                        p.style.transform = `rotateY(${j*120}deg) rotateX(15deg)`;
                         head.appendChild(p);
                     }
                     flower.appendChild(stem); flower.appendChild(head);
@@ -304,10 +304,11 @@
                     const center = document.createElement('div');
                     center.className = 'sun-center';
                     head.appendChild(center);
-                    for(let j=0; j<14; j++) {
+                    // 24 Petal Dense Sunflower
+                    for(let j=0; j<24; j++) {
                         const p = document.createElement('div');
                         p.className = 'sun-petal';
-                        p.style.transform = `rotate(${j*25.7}deg)`;
+                        p.style.transform = `rotate(${j*15}deg)`;
                         head.appendChild(p);
                     }
                     flower.appendChild(stem); flower.appendChild(head);
@@ -318,11 +319,11 @@
 
         function initExperience() {
             document.getElementById('gatekeeper').style.transform = 'translateY(-100%)';
-            document.getElementById('bg-music').play().catch(e => console.log("Audio needs interaction"));
+            document.getElementById('bg-music').play().catch(e => console.log("Audio boot"));
             initParticles(); animateParticles(); createGarden();
             const obs = new IntersectionObserver((es) => {
                 es.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
-            }, {threshold: 0.15});
+            }, {threshold: 0.1});
             document.querySelectorAll('.glass-content').forEach(g => obs.observe(g));
         }
 
