@@ -3,387 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pari's Birthday Universe 🪐</title>
+    <title>Pari: The 18 Chapters of Forever 🎀</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@100;400;900&family=Playfair+Display:ital,wght@1,700&family=Quicksand:wght@300;500;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Dancing+Script:wght@700&family=Montserrat:wght@100;300;900&family=Playfair+Display:ital,wght@0,400;1,700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --paper: #fffdf9;
-            --ink: #1a1a1a;
-            --deep-rose: #9d174d;
-            --soft-rose: #fce7f3;
-            --gold-leaf: #af924d;
-            --binding: #3d2b1f;
+            --rose: #ff4d6d;
+            --gold: #af924d;
+            --white: #ffffff;
+            --bg-dark: #0a0a0a;
         }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            margin: 0;
-            background-color: var(--paper);
-            color: var(--ink);
-            font-family: 'Lora', serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background: var(--bg-dark);
+            color: var(--white);
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            height: 100vh;
         }
 
-        /* --- THE CINEMATIC PRELOADER --- */
-        #cinema-gate {
+        /* --- THE CINEMATIC INTRO --- */
+        #intro-gate {
             position: fixed;
             inset: 0;
             background: #000;
-            z-index: 9999;
+            z-index: 2000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: 2s cubic-bezier(0.8, 0, 0.2, 1);
-            color: white;
             text-align: center;
+            transition: 2s cubic-bezier(0.8, 0, 0.2, 1);
         }
 
-        .loader-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+        .gate-title {
+            font-family: 'Cinzel';
             letter-spacing: 15px;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeInOut 5s forwards;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--white);
             text-transform: uppercase;
         }
 
-        .open-btn {
+        .start-btn {
             background: transparent;
             border: 1px solid rgba(255,255,255,0.3);
             color: white;
-            padding: 20px 60px;
+            padding: 20px 50px;
             font-family: 'Montserrat';
             letter-spacing: 5px;
             cursor: pointer;
             transition: 0.5s;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards 4s;
-            border-radius: 2px;
-            text-transform: uppercase;
         }
 
-        .open-btn:hover {
-            background: white;
-            color: black;
-            box-shadow: 0 0 50px rgba(255,255,255,0.3);
-        }
+        .start-btn:hover { background: white; color: black; box-shadow: 0 0 40px rgba(255,255,255,0.4); }
 
-        /* --- 1. THE HERO LANDING (WORLD'S BEST WISH) --- */
-        .hero {
+        /* --- PAGE SYSTEM --- */
+        .page-container {
+            width: 100%;
             height: 100vh;
-            display: flex;
+            position: relative;
+        }
+
+        .page {
+            position: absolute;
+            inset: 0;
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, #fff 0%, var(--soft-rose) 100%);
             text-align: center;
-            position: relative;
-        }
-
-        .main-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 6rem;
-            color: var(--deep-rose);
-            margin: 0;
-            animation: fadeInDown 2s forwards;
-        }
-
-        .pari-name-hero {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 12rem;
-            color: #1a1a1a;
-            line-height: 0.8;
-            letter-spacing: -5px;
-            margin-top: -10px;
-            animation: fadeInUp 2s forwards 0.5s;
-        }
-
-        .bday-sub {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: #777;
-            margin-top: 30px;
-            animation: fadeIn 2s forwards 2s;
-        }
-
-        .scroll-prompt {
-            position: absolute;
-            bottom: 40px;
-            font-family: 'Montserrat';
-            font-size: 0.7rem;
-            letter-spacing: 5px;
-            color: #999;
-            animation: blink 2s infinite;
-        }
-
-        /* --- 2. HUGE PHOTOS + STORY PARALLAX --- */
-        .story-section {
-            background: white;
-        }
-
-        .story-chapter {
-            height: 100vh;
-            display: flex;
-            position: relative;
-            background-attachment: fixed;
+            padding: 40px;
             background-size: cover;
             background-position: center;
+            transition: 1s ease-in-out;
         }
 
-        .story-chapter:nth-child(1) { background-image: url('photos/photo1.jpg'); }
-        .story-chapter:nth-child(2) { background-image: url('photos/photo2.jpg'); }
-        .story-chapter:nth-child(3) { background-image: url('photos/photo3.jpg'); }
+        .page.active { display: flex; animation: zoomIn 1.5s forwards; }
 
-        .chapter-text-box {
+        /* Different Visual Moods for the 3 Photos */
+        .mood-clear { filter: brightness(0.4); }
+        .mood-warm { filter: sepia(0.3) brightness(0.4) saturate(1.2); }
+        .mood-noir { filter: grayscale(1) brightness(0.3); }
+        .mood-soft { filter: blur(2px) brightness(0.4); }
+
+        .overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.5); /* Overlay for readability */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 10%;
-            color: white;
-            transition: 0.5s;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+            z-index: 1;
         }
 
-        .chapter-label {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            letter-spacing: 8px;
-            color: var(--soft-rose);
+        .content {
+            position: relative;
+            z-index: 5;
+            max-width: 900px;
+        }
+
+        .ch-num {
+            font-family: 'Montserrat';
+            font-size: 0.8rem;
+            letter-spacing: 10px;
+            color: var(--rose);
             margin-bottom: 20px;
+            display: block;
+            text-transform: uppercase;
         }
 
-        .chapter-title {
+        .ch-title {
             font-family: 'Playfair Display', serif;
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-style: italic;
-            margin-bottom: 30px;
-            line-height: 1.1;
+            margin-bottom: 40px;
+            line-height: 1;
         }
 
-        .chapter-p {
-            max-width: 600px;
-            font-family: 'Lora', serif;
-            font-size: 1.5rem;
+        .ch-msg {
+            font-size: 1.6rem;
             line-height: 1.8;
+            font-weight: 300;
             color: #ddd;
         }
 
-        /* --- 3. REASONS (DYNAMIC) --- */
-        .reasons-box {
-            padding: 100px 20px;
-            background: #fffafa;
-            text-align: center;
-        }
-
-        #reason-display {
+        .special-quote {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            color: #1a1a1a;
-            margin-top: 40px;
-            min-height: 120px;
-            font-weight: bold;
+            font-size: 2.5rem;
+            color: var(--rose);
+            margin-top: 20px;
         }
 
-        /* --- 4. THE ULTIMATE PROMISE VOW --- */
-        .vow-section {
-            padding: 150px 20px;
-            background: #111;
-            color: #fff;
-            text-align: center;
+        /* --- NAVIGATION --- */
+        .nav {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            z-index: 1000;
         }
 
-        .vow-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            color: #fff;
-        }
-
-        .vow-p {
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            font-size: 1.8rem;
-            line-height: 2.2;
-            color: #ccc;
-        }
-
-        #show-answer-btn {
-            background: white;
-            color: black;
+        .nav-btn {
+            background: none;
             border: none;
-            padding: 20px 50px;
+            color: white;
             font-family: 'Montserrat';
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-radius: 5px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+            text-transform: uppercase;
+            opacity: 0.5;
+            transition: 0.3s;
         }
 
-        #eternal-answer {
-            max-width: 800px;
-            margin: 80px auto;
-            background: white;
-            color: #1a1a1a;
-            padding: 80px 40px;
-            display: none;
-            animation: blurIn 2s forwards;
-        }
+        .nav-btn:hover { opacity: 1; }
 
-        /* --- KEYFRAMES --- */
-        @keyframes fadeInOut { 0% { opacity: 0; } 30%, 70% { opacity: 1; letter-spacing: 20px; } 100% { opacity: 0; } }
-        @keyframes fadeIn { to { opacity: 1; } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        @keyframes blurIn { from { filter: blur(20px); opacity: 0; transform: scale(0.9); } to { filter: blur(0); opacity: 1; transform: scale(1); } }
+        .pg-indicator { font-family: 'Montserrat'; font-size: 0.8rem; opacity: 0.3; }
+
+        @keyframes zoomIn { from { opacity: 0; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <audio id="bg-audio" loop><source src="song.mp3" type="audio/mpeg"></audio>
-
-    <div id="cinema-gate">
-        <div class="loader-logo">A Legacy of Love</div>
-        <div class="loader-logo" style="animation-delay: 2.5s; font-size: 0.8rem;">PRESENTED TO THE GIRL OF MY DREAMS</div>
-        <button class="open-btn" onclick="openCinema()">OPEN OUR WORLD 🎁</button>
+    <div id="intro-gate">
+        <div class="gate-title">October 11, 2025</div>
+        <h1 style="font-family: 'Cinzel'; font-size: 3rem; margin-bottom: 20px;">FOR MY PARI</h1>
+        <button class="start-btn" onclick="start()">ENTER HER UNIVERSE</button>
     </div>
 
-    <section class="hero">
-        <h1 class="main-title">A Million Happy Returns...</h1>
-        <div class="pari-name-hero">Pari</div>
-        <div class="bday-sub">TO THE LIGHT OF MY LIFE</div>
-        <p class="bday-sub" style="font-size: 1.2rem; margin-top: 10px; color: #555;">Est. October 11, 2025</p>
-        <div class="scroll-prompt">SCROLL INTO OUR UNIVERSE</div>
-    </section>
+    <audio id="bgm" loop><source src="song.mp3" type="audio/mpeg"></audio>
 
-    <section class="story-section">
-        
-        <div class="story-chapter">
-            <div class="chapter-text-box">
-                <div class="chapter-label">Chapter 01: The Reflection</div>
-                <h2 class="chapter-title">Those Eyes...</h2>
-                <p class="chapter-p">
-                    Pari, I wish I could find the words to describe how I feel when I look at you. <br>
-                    <strong>Your eyes...</strong> they aren't just eyes. They are a whole galaxy I want to get lost in every single day. 
-                </p>
+    <div class="page-container" id="book">
+        <div class="page active mood-clear" style="background-image: url('photos/photo1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 01</span>
+                <h2 class="ch-title">Saeng-il chugha-hae</h2>
+                <p class="ch-msg">Today is the most important day of the year. Not because of the date, but because of the soul who was born on it. Happy Birthday, Pari.</p>
             </div>
         </div>
 
-        <div class="story-chapter">
-            <div class="chapter-text-box">
-                <div class="chapter-label">Chapter 02: The Light</div>
-                <h2 class="chapter-title">My Beautiful World</h2>
-                <p class="chapter-p">
-                    You are perfect, not just because of how pretty you are, but because of the soul inside you. <br>
-                    You make the simplest day feel like a magical adventure. Thank you for choosing me.
-                </p>
+        <div class="page mood-warm" style="background-image: url('photos/photo2.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 02</span>
+                <h2 class="ch-title">A Million Returns</h2>
+                <p class="ch-msg">I wish you many, many happy returns of the day. May every smile you give me return to you a thousand times over today.</p>
             </div>
         </div>
 
-        <div class="chapter-text-box" style="position: static; padding: 10% 20%; background: #000; color: #fff; text-align: center;">
-            <div class="chapter-label">Chapter 03: The Vow</div>
-            <h2 class="chapter-title" style="color: #fff; text-align: center;">My Anchored Soul</h2>
-            <p class="chapter-p" style="max-width: 800px; margin: 0 auto; color: #ddd; text-align: center;">
-                If I ever seem protective, if I ever hold you too tight, it's because of one simple, undeniable truth: <br><br>
-                <span style="color: var(--deep-rose); font-size: 2.5rem; font-weight: 700;">"The fear of losing you is greater than the fear of losing myself."</span>
-            </p>
+        <div class="page mood-noir" style="background-image: url('photos/photo3.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 03</span>
+                <h2 class="ch-title">The First Spark</h2>
+                <p class="ch-msg">I remember looking into your eyes and realizing that I was done for. I didn't just see beauty; I saw my entire future.</p>
+            </div>
         </div>
 
-    </section>
+        <div class="page mood-soft" style="background-image: url('photos/photo1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 04</span>
+                <h2 class="ch-title">Your Eyes</h2>
+                <p class="ch-msg">They say the eyes are the windows to the soul. If that's true, your soul is the most beautiful thing I have ever encountered.</p>
+            </div>
+        </div>
 
-    <section class="reasons-box">
-        <h2 style="font-family: 'Montserrat'; letter-spacing: 5px; color: #7f8c8d;">Why I Love You</h2>
-        <div style="font-size: 60px; margin: 20px 0;">🎀🌷🌻🌹🌸</div>
-        <div id="reason-display">"Because you're the best thing that ever happened to me."</div>
-        <button onclick="changeReason()" style="background: var(--deep-rose); color: white; border: none; padding: 15px 30px; border-radius: 5px; font-family: 'Montserrat'; cursor: pointer; margin-top: 20px;">Pull Another Reason</button>
-    </section>
+        <div class="page mood-clear" style="background-image: url('photos/photo2.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 05</span>
+                <h2 class="ch-title">Pure Perfection</h2>
+                <p class="ch-msg">You are perfect, Pari. Not because you don't have flaws, but because even your flaws are the things I love most about you.</p>
+            </div>
+        </div>
 
-    <section class="vow-section">
-        <h2 class="vow-title">saeng-il chugha-hae, My Pari ❤️</h2>
-        <div class="vow-p">
-            Pari, today I am celebrating you as your boyfriend, the man who adores you. But my true wish isn't just for today.
+        <div class="page mood-warm" style="background-image: url('photos/photo3.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 06</span>
+                <h2 class="ch-title">The Pari of My Life</h2>
+                <p class="ch-msg">You are literally the angel of my life. You brought a light into my world that I never knew I was missing.</p>
+            </div>
         </div>
-        <div class="vow-p" style="font-size: 2.2rem; color: #fff; font-family: 'Playfair Display'; font-style: italic; background: linear-gradient(rgba(157,23,77,0), rgba(157,23,77,0.3)); padding: 30px;">
-            "My goal in this life is to be the one standing by your side for every birthday you will ever see. The next 10, the next 50, and the next 100. I promise to be the man who makes sure every birthday after this one feels like a shared blessing."
-        </div>
-        <div class="vow-p">
-            Happy Birthday, my soulmate. Here's to us, forever.
-        </div>
-        
-        <button id="show-answer-btn" onclick="revealAnswer()">IF YOU EVER WONDER WHY...</button>
-        
-        <div id="eternal-answer">
-            <p style="font-family: 'Cinzel'; font-size: 1.1rem; letter-spacing: 3px; color: #7f8c8d; text-align: center;">THE ETERNAL ANSWER</p>
-            <div style="width: 50px; height: 1px; background: #eee; margin: 20px auto;"></div>
-            <p style="font-size: 1.5rem; line-height: 2; color: #1a1a1a;">
-                "Whenever you feel like you want to ask me 'Why do I love you?', remember this: <br><br>
-                <span style="font-size: 2.5rem; color: var(--deep-rose); font-family: 'Playfair Display';">
-                    Because I have never felt this attached or connected to anyone else in my life. I would choose you over anyone or anything in this world without a second thought.
-                </span>
-                <br><br>
-                I love you the most, forever and always. saeng-il chugha-hae, Pari."
-            </p>
-            <div style="font-family: 'Dancing Script'; font-size: 3rem; color: var(--gold-leaf); text-align: center;">Forever Yours.</div>
-        </div>
-    </section>
 
-    <footer style="padding: 50px; text-align: center; color: #ddd; background: #111; font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 3px;">
-        DESIGNED WITH LOVE FOR THE BEST GIRL IN THE UNIVERSE
-    </footer>
+        <div class="page mood-noir" style="background-image: url('photos/photo1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 07</span>
+                <h2 class="ch-title">My Deepest Fear</h2>
+                <p class="ch-msg">If I ever seem protective, it's because <span style="color:var(--rose)">the fear of losing you is greater than the fear of losing myself.</span></p>
+            </div>
+        </div>
+
+        <div class="page mood-soft" style="background-image: url('photos/photo2.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 08</span>
+                <h2 class="ch-title">Connected</h2>
+                <p class="ch-msg">I have never felt this attached or connected to anyone else in my life. It’s a bond that transcends words.</p>
+            </div>
+        </div>
+
+        <div class="page mood-clear" style="background-image: url('photos/photo3.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 09</span>
+                <h2 class="ch-title">Handling Me</h2>
+                <p class="ch-msg">Thank you for handling me with so much love, even when I'm difficult. You are my anchor and my safe place.</p>
+            </div>
+        </div>
+
+        <div class="page mood-warm" style="background-image: url('photos/photo1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 10</span>
+                <h2 class="ch-title">Our Future</h2>
+                <p class="ch-msg">This is just the first of many. I promise to be the man standing by your side for every single birthday you ever have.</p>
+            </div>
+        </div>
+
+        <div class="page mood-noir" style="background-image: url('photos/photo2.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 11</span>
+                <h2 class="ch-title">The Next 50 Years</h2>
+                <p class="ch-msg">Imagine us, 50 years from now, still celebrating this day. That is my goal. That is my dream.</p>
+            </div>
+        </div>
+
+        <div class="page mood-soft" style="background-image: url('photos/photo3.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 12</span>
+                <h2 class="ch-title">My Choice</h2>
+                <p class="ch-msg">I would choose you over anyone or anything in this world without a second thought. You are my priority, always.</p>
+            </div>
+        </div>
+
+        <div class="page mood-clear" style="background-image: url('photos/photo1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 13</span>
+                <h2 class="ch-title">The Best Human</h2>
+                <p class="ch-msg">You are truly the best human I know. Your heart is pure, and your love is the greatest gift I've ever received.</p>
+            </div>
+        </div>
+
+        <div class="page mood-warm" style="background-image: url('photos/photo2.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 14</span>
+                <h2 class="ch-title">My Protector</h2>
+                <p class="ch-msg">I promise to protect your smile and your heart for as long as I breathe. You are safe with me.</p>
+            </div>
+        </div>
+
+        <div class="page mood-noir" style="background-image: url('photos/photo3.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 15</span>
+                <h2 class="ch-title">More than Life</h2>
+                <p class="ch-msg">I love you more than words can express, more than time can measure, and more than life itself.</p>
+            </div>
+        </div>
+
+        <div class="page mood-soft" style="background-image: url('photos/photo1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 16</span>
+                <h2 class="ch-title">The Vow</h2>
+                <p class="ch-msg">I vow to celebrate you every day, not just today. Because every day with you is a gift I don't take for granted.</p>
+            </div>
+        </div>
+
+        <div class="page mood-clear" style="background-image: url('photos/photo2.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">Chapter 17</span>
+                <h2 class="ch-title">Why I Love You</h2>
+                <p class="ch-msg">If you ever wonder why... it's because I have never felt this connection to anyone else. You are my soul's other half.</p>
+            </div>
+        </div>
+
+        <div class="page mood-warm" style="background-image: url('photos/photo3.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <span class="ch-num">The Eternal Chapter</span>
+                <h2 class="ch-title">Forever Yours</h2>
+                <p class="ch-msg" style="font-family: 'Dancing Script'; font-size: 2.2rem;">"I would choose you over anyone or anything in this world without a second thought."</p>
+                <div class="special-quote">Happy Birthday, Pari. I love you the most.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="nav">
+        <button class="nav-btn" onclick="prev()">Previous</button>
+        <span class="pg-indicator" id="pg-text">1 / 18</span>
+        <button class="nav-btn" onclick="next()">Next</button>
+    </div>
 
     <script>
-        const audio = document.getElementById('bg-audio');
-        
-        function openCinema() {
-            document.getElementById('cinema-gate').style.transform = 'translateY(-100%)';
+        let current = 0;
+        const pages = document.querySelectorAll('.page');
+        const pgText = document.getElementById('pg-text');
+        const audio = document.getElementById('bgm');
+
+        function start() {
+            document.getElementById('intro-gate').style.transform = 'translateY(-100%)';
             audio.play();
         }
 
-        // --- REASONS ENGINE ---
-        const reasons = [
-            "Because your smile makes my world stop.",
-            "Because your eyes hold a universe I love exploring.",
-            "Because you are the kindest soul I've ever known.",
-            "Because you make me want to be a better person every day.",
-            "Because the way you laugh is my favorite melody.",
-            "Because you are my safe place.",
-            "Because you handle me better than anyone else could.",
-            "Because your perfection is found in your every detail.",
-            "Because even your silence is comfortable with me.",
-            "Because you are the 'Pari' of my life's story."
-        ];
-        let rIdx = 0;
-        function changeReason() {
-            const display = document.getElementById('reason-display');
-            display.style.opacity = 0;
-            setTimeout(() => {
-                rIdx = (rIdx + 1) % reasons.length;
-                display.innerText = reasons[rIdx];
-                display.style.opacity = 1;
-            }, 500);
+        function update() {
+            pages.forEach((p, i) => {
+                p.classList.remove('active');
+                if (i === current) p.classList.add('active');
+            });
+            pgText.innerText = `${current + 1} / 18`;
         }
 
-        function revealAnswer() {
-            const answer = document.getElementById('eternal-answer');
-            answer.style.display = 'block';
-            window.scrollTo({ top: answer.offsetTop, behavior: 'smooth' });
+        function next() {
+            if (current < pages.length - 1) {
+                current++;
+                update();
+            }
         }
+
+        function prev() {
+            if (current > 0) {
+                current--;
+                update();
+            }
+        }
+
+        // Swipe support for mobile
+        let touchStart = 0;
+        document.addEventListener('touchstart', e => touchStart = e.touches[0].clientX);
+        document.addEventListener('touchend', e => {
+            let touchEnd = e.changedTouches[0].clientX;
+            if (touchStart - touchEnd > 50) next();
+            if (touchEnd - touchStart > 50) prev();
+        });
     </script>
 </body>
 </html>
