@@ -3,267 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Premiere for Pari ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital@0;1&family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Infinity & Beyond | For Pari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bloom-pink: #fce4ec;
-            --deep-rose: #880e4f;
-            --tulip-gold: #fff9c4;
-            --text-dark: #2d3436;
+            --bg-color: #fffdf9;
+            --accent-pink: #f8bbd0;
+            --deep-rose: #ad1457;
+            --gold: #c5a059;
+            --text-main: #34495e;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #fffafb;
-            color: var(--text-dark);
+            background-color: var(--bg-color);
+            color: var(--text-main);
             font-family: 'Lora', serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* --- MOVIE INTRO --- */
-        #movie-intro {
+        /* --- THE MOVIE PRE-LOADER --- */
+        #cinema-curtain {
             position: fixed;
             inset: 0;
             background: #000;
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
-            transition: 2s ease-in-out;
+            transition: transform 2s cubic-bezier(0.8, 0, 0.2, 1);
             color: white;
+            text-align: center;
         }
 
-        .studio-name {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 8px;
-            font-size: 1.2rem;
+        .loader-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            margin-bottom: 30px;
             opacity: 0;
-            animation: fadeInOut 4s forwards;
+            animation: fadeInOut 5s forwards;
         }
 
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; }
-        }
-
-        .play-btn {
-            background: none;
-            border: 2px solid white;
+        .start-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
             color: white;
             padding: 15px 40px;
-            font-family: 'Playfair Display';
+            font-family: 'Montserrat';
+            letter-spacing: 3px;
             cursor: pointer;
-            font-size: 1.5rem;
-            transition: 0.4s;
-            margin-top: 20px;
+            transition: 0.5s;
             opacity: 0;
             animation: fadeIn 1s forwards 4s;
+            border-radius: 2px;
         }
 
-        .play-btn:hover { background: white; color: black; }
+        .start-btn:hover {
+            background: white;
+            color: black;
+            border-color: white;
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
 
-        /* --- CINEMATIC HERO --- */
+        /* --- THE MASTER HERO --- */
         .hero {
             height: 100vh;
+            position: relative;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), #fffafb),
-                        radial-gradient(circle at center, #fff9c4 0%, #fce4ec 100%);
-            text-align: center;
+            overflow: hidden;
         }
 
-        .movie-title {
-            font-family: 'Great Vibes', cursive;
+        .hero-video-mock {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,253,249,0.2), var(--bg-color)),
+                        url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 6rem;
-            color: var(--deep-rose);
             margin: 0;
+            color: var(--deep-rose);
+            font-style: italic;
         }
 
-        /* --- THE CROCHET BOUQUET --- */
-        .bouquet-section {
-            padding: 100px 20px;
-            text-align: center;
+        .hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        /* --- CROCHET GARDEN (TULIPS & SUNFLOWERS) --- */
+        .garden-section {
+            padding: 120px 20px;
             background: white;
-        }
-
-        .crochet-art {
-            font-size: 5rem;
-            display: inline-block;
-            animation: sway 3s ease-in-out infinite;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        /* --- THE VOW (FUTURE HUSBAND) --- */
-        .future-vow {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 60px;
-            background: #fff;
-            border-radius: 2px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--deep-rose);
+            text-align: center;
             position: relative;
         }
 
-        .vow-label {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--deep-rose);
-            color: white;
-            padding: 5px 20px;
-            font-family: 'Playfair Display';
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-
-        /* --- POLAROIDS --- */
-        .gallery {
+        .crochet-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .flower-stem {
+            width: 4px;
+            height: 150px;
+            background: #81c784;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 10px;
+            transition: height 2s;
+        }
+
+        .flower-head {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: -50px;
+            left: -28px;
+            font-size: 40px;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        /* --- MEMORY POLAROIDS --- */
+        .tape-gallery {
+            padding: 100px 0;
+            background: #fffafa;
+            display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            padding: 50px;
+            gap: 40px;
         }
 
         .polaroid {
             background: white;
-            padding: 15px 15px 50px 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            transform: rotate(-2deg);
-            transition: 0.5s;
+            padding: 15px 15px 60px 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            position: relative;
+            transition: 0.4s;
+            max-width: 320px;
         }
 
-        .polaroid img { width: 280px; height: 350px; object-fit: cover; }
-        .polaroid:hover { transform: scale(1.05) rotate(0deg); }
+        .polaroid img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            filter: sepia(0.2);
+        }
 
-        /* --- FINAL LETTER --- */
-        #final-message {
-            display: none;
-            padding: 100px 20px;
+        .polaroid::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2;
+        }
+
+        .polaroid:nth-child(1) { transform: rotate(-3deg); }
+        .polaroid:nth-child(2) { transform: translateY(-20px) rotate(2deg); }
+        .polaroid:nth-child(3) { transform: rotate(-1deg); }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+        }
+
+        /* --- THE VOW (BOYFRIEND TO HUSBAND) --- */
+        .vow-theater {
+            padding: 150px 20px;
+            background: #000;
+            color: #fff;
             text-align: center;
-            opacity: 0;
-            transition: 3s;
         }
 
-        .letter-text {
-            max-width: 700px;
+        .vow-text {
+            max-width: 900px;
             margin: auto;
-            font-size: 1.4rem;
-            line-height: 1.8;
-            font-style: italic;
-            color: #444;
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 2s;
         }
 
-        /* --- UTILS --- */
+        .vow-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .husband-signature {
+            margin-top: 50px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+        }
+
+        /* --- THE INFINITY NOTE --- */
+        .infinity-reveal {
+            padding: 150px 20px;
+            background: var(--bg-color);
+            text-align: center;
+        }
+
+        #the-answer {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 80px 40px;
+            border: 1px solid #eee;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.03);
+            display: none;
+            animation: blurIn 2s forwards;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            30% { opacity: 1; letter-spacing: 15px; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
         @keyframes fadeIn { to { opacity: 1; } }
-        .hidden { display: none; }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes blurIn {
+            from { filter: blur(10px); opacity: 0; }
+            to { filter: blur(0); opacity: 1; }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .vow-text { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <audio id="bg-music" loop><source src="song.mp3" type="audio/mpeg"></audio>
+    <audio id="main-audio" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
 
-    <div id="movie-intro">
-        <div class="studio-name">A WORLDWIDE PRODUCTIONS BY YOUR FAVORITE PERSON</div>
-        <div class="studio-name" style="animation-delay: 2s;">STARRING: THE GIRL OF MY DREAMS</div>
-        <button class="play-btn" onclick="startMovie()">START PREMIERE 🎬</button>
+    <div id="cinema-curtain">
+        <div class="loader-logo">A JOURNEY OF TWO SOULS</div>
+        <div class="loader-logo" style="animation-delay: 2.5s; font-size: 0.8rem;">PRESENTED BY THE MAN WHO ADORES YOU</div>
+        <button class="start-btn" onclick="openCinema()">PRESS TO PLAY OUR STORY</button>
     </div>
 
     <section class="hero">
-        <p style="letter-spacing: 5px; font-family: 'Playfair Display'; color: var(--deep-rose);">CELEBRATING THE LIGHT OF MY LIFE</p>
-        <h1 class="movie-title">Happy Birthday, Pari</h1>
-        <div id="subtitle" style="font-size: 1.5rem; margin-top: 20px; font-style: italic; opacity: 0.8;"></div>
+        <div class="hero-video-mock"></div>
+        <div class="hero-content" style="text-align: center;">
+            <p class="hero-subtitle">Vol. 1: My Everything</p>
+            <h1>Happy Birthday, Pari</h1>
+            <p style="font-style: italic; font-size: 1.2rem; color: #7f8c8d; margin-top: 20px;">
+                "I promise to be the man who celebrates you every single year, for the rest of our lives."
+            </p>
+        </div>
     </section>
 
-    <section class="bouquet-section">
-        <div class="crochet-art">🌻🌷🌻</div>
-        <h2 style="font-family: 'Playfair Display';">A Crochet Bouquet That Never Fades</h2>
-        <p style="max-width: 600px; margin: 20px auto; color: #777;">
-            Since real flowers eventually wilt, I made you these. Sunflowers for your warmth, and tulips to represent our perfect love. Just like these, my love for you is handcrafted, patient, and will stay beautiful forever.
+    <section class="garden-section">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">A Bouquet of Forever</h2>
+        <p style="max-width: 600px; margin: auto; font-size: 1.1rem; color: #7f8c8d;">
+            Real flowers die, but I wanted to give you something as enduring as my devotion. 
+            Handcrafted memories, represented by your favorite sunflowers and tulips.
         </p>
-    </section>
-
-    <section style="padding: 50px 20px;">
-        <div class="future-vow">
-            <div class="vow-label">A MESSAGE FROM THE FUTURE</div>
-            <h3 style="font-family: 'Playfair Display'; text-align: center; font-size: 2rem;">To my Birthday Girl...</h3>
-            <p>
-                Watching you grow, achieve your dreams, and simply exist is the greatest movie I’ve ever seen. 
-                Today, I’m celebrating you as your boyfriend—the one who gets to hold your hand and see you smile. 
-            </p>
-            <p>
-                But I’m also celebrating you as your <strong>future husband</strong>. The man who is going to stand by you for the next 50 years, the one who will build a home with you, and the one who will make sure every single birthday you ever have feels like a royal celebration.
-            </p>
-            <p style="text-align: center; font-family: 'Dancing Script'; font-size: 1.8rem; color: var(--deep-rose);">
-                I am yours in this lifetime and every other.
-            </p>
+        <div class="crochet-container">
+            <div><div class="flower-head">🌻</div><div class="flower-stem" id="stem1"></div></div>
+            <div><div class="flower-head" style="animation-delay: 1s;">🌷</div><div class="flower-stem" id="stem2"></div></div>
+            <div><div class="flower-head" style="animation-delay: 0.5s;">🌻</div><div class="flower-stem" id="stem3"></div></div>
+            <div><div class="flower-head" style="animation-delay: 1.5s;">🌷</div><div class="flower-stem" id="stem4"></div></div>
         </div>
     </section>
 
-    <section style="background: #fff0f3; padding: 100px 0;">
-        <center><h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 50px;">Favorite Frames from Our Story 🎞️</h2></center>
-        <div class="gallery">
-            <div class="polaroid"><img src="photos/photo1.jpg"></div>
-            <div class="polaroid" style="transform: rotate(3deg);"><img src="photos/photo2.jpg"></div>
-            <div class="polaroid"><img src="photos/photo3.jpg"></div>
+    <section class="tape-gallery">
+        <div class="polaroid">
+            <img src="photos/photo1.jpg" alt="Pari 1">
+            <p style="text-align: center; font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 15px;">The First Spark</p>
+        </div>
+        <div class="polaroid">
+            <img src="photos/photo2.jpg" alt="Pari 2">
+            <p style="text-align: center; font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 15px;">My Beautiful World</p>
+        </div>
+        <div class="polaroid">
+            <img src="photos/photo3.jpg" alt="Pari 3">
+            <p style="text-align: center; font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 15px;">In This Moment</p>
         </div>
     </section>
 
-    <section style="text-align: center; padding: 100px 20px;">
-        <button class="play-btn" style="color: var(--deep-rose); border-color: var(--deep-rose); opacity: 1; animation: none;" onclick="revealEnd()">The Final Scene ✉️</button>
-        
-        <div id="final-message">
-            <div class="letter-text">
-                <p>"Whenever you feel like you want to ask me 'Why do I love you?', remember this:</p>
-                <p style="font-size: 2rem; color: var(--deep-rose); font-family: 'Great Vibes';">
-                    The answer will always be because I have never felt this attached or connected to anyone else in my life. I would choose you over anyone or anything in this world without a second thought.
-                </p>
-                <p>I love you the most, Pari. Always have, always will."</p>
-            </div>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RnbjZ6amJ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v8Y8V0VvVfWvW/giphy.gif" width="100">
+    <section class="vow-theater">
+        <div id="vow-trigger" class="vow-text">
+            "Pari, today I stand here as your boyfriend—the man who gets to hold you, laugh with you, and love you in this moment. 
+            But in my heart, I am already your <strong>husband</strong>. 
+            The man who will protect you, provide for you, and celebrate every single birthday you ever have until our hair is gray and our hearts have told all their stories."
+            <div class="husband-signature">Your Future Husband</div>
         </div>
     </section>
+
+    <section class="infinity-reveal">
+        <button class="start-btn" style="color: black; border-color: black; opacity: 1; animation: none;" onclick="revealAnswer()">
+            IF YOU EVER WONDER WHY...
+        </button>
+
+        <div id="the-answer">
+            <p style="font-family: 'Playfair Display'; font-size: 1.1rem; letter-spacing: 2px;">THE ETERNAL ANSWER</p>
+            <div style="width: 50px; height: 1px; background: var(--gold); margin: 20px auto;"></div>
+            <p style="font-size: 1.4rem; line-height: 2;">
+                "Whenever you feel like you want to ask me 'Why do I love you?', remember this: <br><br>
+                <span style="color: var(--deep-rose); font-family: 'Playfair Display'; font-size: 2rem; font-style: italic;">
+                    Because I have never felt this attached or connected to anyone else in my life. I would choose you over anyone or anything in this world without a second thought.
+                </span>
+                <br><br>
+                I love you the most. Happy Birthday, my Pari."
+            </p>
+            <p style="font-family: 'Dancing Script'; font-size: 2rem; color: var(--gold);">Forever & Always.</p>
+        </div>
+    </section>
+
+    <footer style="padding: 50px; text-align: center; font-size: 0.8rem; letter-spacing: 3px; opacity: 0.5;">
+        DESIGNED WITH LOVE FOR THE BEST GIRL IN THE UNIVERSE
+    </footer>
 
     <script>
-        function startMovie() {
-            document.getElementById('movie-intro').style.transform = 'translateY(-100%)';
-            document.getElementById('bg-music').play();
+        function openCinema() {
+            document.getElementById('cinema-curtain').style.transform = 'translateY(-100%)';
+            document.getElementById('main-audio').play();
             
-            // Subtitle effect
-            const sub = document.getElementById('subtitle');
-            const lines = ["The best girl in the world.", "My soulmate.", "My future wife.", "My everything."];
-            let l = 0;
-            setInterval(() => {
-                sub.style.opacity = 0;
-                setTimeout(() => {
-                    sub.innerHTML = lines[l % lines.length];
-                    sub.style.opacity = 1;
-                    l++;
-                }, 1000);
-            }, 3000);
+            // Bloom flowers after delay
+            setTimeout(() => {
+                document.getElementById('stem1').style.height = '200px';
+                document.getElementById('stem2').style.height = '180px';
+                document.getElementById('stem3').style.height = '220px';
+                document.getElementById('stem4').style.height = '190px';
+            }, 2500);
         }
 
-        function revealEnd() {
-            const final = document.getElementById('final-message');
-            final.style.display = 'block';
-            setTimeout(() => {
-                final.style.opacity = '1';
-                window.scrollTo({ top: final.offsetTop, behavior: 'smooth' });
-            }, 100);
+        // Scroll Reveal for Vow
+        window.addEventListener('scroll', () => {
+            const trigger = document.getElementById('vow-trigger');
+            const pos = trigger.getBoundingClientRect().top;
+            const screen = window.innerHeight / 1.3;
+            if(pos < screen) trigger.classList.add('active');
+        });
+
+        function revealAnswer() {
+            const ans = document.getElementById('the-answer');
+            ans.style.display = 'block';
+            window.scrollTo({ top: ans.offsetTop - 100, behavior: 'smooth' });
         }
     </script>
 </body>
