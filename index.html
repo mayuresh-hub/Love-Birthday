@@ -3,418 +3,519 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pari's Kawaii Birthday Adventure 🎀</title>
+    <title>Infinity & Beyond | For My Pari 🎀</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Batang:wght@400;700&family=Pacifico&family=Quicksand:wght@300;500;700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Batang:wght@400;700&family=Pacifico&family=Quicksand:wght@300;500;700&family=Shadows+Into+Light&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --kitty-pink: #ffb7c5;
-            --soft-cream: #fff5f7;
-            --strawberry: #ff4d6d;
-            --korean-sky: #e0f2fe;
-            --sanrio-white: #ffffff;
+            --k-pink: #ffdae0;
+            --k-rose: #ff4d6d;
+            --k-cream: #fff9f9;
+            --k-blue: #e0f2fe;
+            --white: #ffffff;
+            --text: #2d3436;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
-            margin: 0;
-            background-color: var(--soft-cream);
-            color: #4a4a4a;
+            background-color: var(--k-cream);
+            color: var(--text);
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* --- 1ST IMPRESSION: THE LUXE ENTRANCE --- */
-        #luxe-gate {
+        /* --- 1. THE LUXE CINEMATIC ENTRANCE --- */
+        #gatekeeper {
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle, #fff 0%, var(--kitty-pink) 100%);
+            background: var(--white);
             z-index: 10000;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: 1.2s cubic-bezier(0.8, 0, 0.2, 1);
+            transition: 1.5s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
-        .entrance-card {
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(255, 183, 197, 0.4);
-            text-align: center;
-            border: 4px solid var(--kitty-pink);
-            max-width: 400px;
-        }
-
-        .kitty-bow {
-            width: 80px;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        .start-text {
-            font-family: 'Pacifico', cursive;
-            font-size: 1.8rem;
-            color: var(--strawberry);
-            margin-bottom: 10px;
-        }
-
-        .k-sub {
-            font-family: 'Gaegu', cursive;
-            font-size: 1.2rem;
-            color: #777;
-            margin-bottom: 25px;
-        }
-
-        .open-btn {
-            background: var(--strawberry);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: bold;
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: var(--k-pink);
+            position: relative;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-            transition: 0.3s;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .open-btn:hover { transform: scale(1.1); background: #ff3355; }
+        .envelope:hover { transform: translateY(-10px) scale(1.05); }
 
-        /* --- THE BIRTHDAY LANDING (WORLD'S BEST) --- */
-        .hero-banner {
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            left: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid var(--k-pink);
+            filter: brightness(1.1);
+        }
+
+        .seal {
+            position: absolute;
+            top: -20px;
+            font-size: 40px;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- 2. VIRTUAL BIRTHDAY CELEBRATION (ANIMATED) --- */
+        .celebration-zone {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: var(--white);
             position: relative;
-            background: white;
-            background-image: radial-gradient(var(--kitty-pink) 1px, transparent 1px);
-            background-size: 40px 40px;
+            text-align: center;
+            overflow: hidden;
         }
 
-        .bday-title {
+        .canvas-confetti {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .main-title {
             font-family: 'Pacifico', cursive;
-            font-size: 5rem;
-            color: var(--strawberry);
-            text-shadow: 4px 4px 0px var(--soft-cream);
-            margin: 0;
-            z-index: 2;
+            font-size: 4rem;
+            color: var(--k-rose);
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s forwards;
         }
 
-        .pari-name-luxe {
+        .pari-name-hero {
             font-family: 'Gowun Batang', serif;
             font-size: 8rem;
             font-weight: 700;
-            color: #1a1a1a;
-            margin-top: -20px;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 30px;
         }
 
-        .deco-kitty {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 150px;
-            opacity: 0.8;
-        }
-
-        /* --- THE STORY-DRIVEN PHOTOS --- */
-        .story-section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .story-card {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            margin-bottom: 120px;
-            background: white;
-            padding: 30px;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 2px solid var(--soft-cream);
-        }
-
-        .story-card:nth-child(even) { flex-direction: row-reverse; }
-
-        .photo-holder {
-            flex: 1;
+        /* --- THE CAKE INTERACTION --- */
+        .cake-container {
             position: relative;
+            width: 200px;
+            height: 200px;
+            margin-top: 40px;
+            cursor: pointer;
         }
 
-        .photo-holder img {
-            width: 100%;
-            border-radius: 20px;
-            border: 8px solid white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .candle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 50px;
+            background: #ffeb3b;
+            border-radius: 5px;
         }
 
-        .kitty-frame-icon {
+        .flame {
             position: absolute;
             top: -20px;
-            left: -20px;
-            font-size: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 25px;
+            background: orange;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px orange;
+            animation: flicker 0.1s infinite;
         }
 
-        .story-text {
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-52%) scale(1.1); }
+        }
+
+        /* --- 3. STORYTELLING CHAPTERS --- */
+        .story-container {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .chapter {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 150px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1.5s;
+        }
+
+        .chapter.visible { opacity: 1; transform: translateY(0); }
+
+        .chapter:nth-child(even) { flex-direction: row-reverse; }
+
+        .photo-frame {
+            flex: 1;
+            position: relative;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border-radius: 5px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        /* HELLO KITTY CORNER DECOR */
+        .photo-frame::after {
+            content: "🎀";
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 40px;
+            transform: rotate(15deg);
+        }
+
+        .text-content {
             flex: 1;
         }
 
-        .story-label {
-            font-family: 'Gaegu', cursive;
-            background: var(--korean-sky);
-            padding: 5px 15px;
-            border-radius: 10px;
+        .korean-tag {
+            font-family: 'Gaegu';
+            background: var(--k-blue);
             color: #0369a1;
+            padding: 5px 15px;
+            border-radius: 50px;
             font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
-        .story-heading {
+        .chapter-title {
             font-family: 'Gowun Batang', serif;
             font-size: 2.5rem;
-            margin: 15px 0;
-            color: var(--strawberry);
+            color: var(--k-rose);
+            margin-bottom: 20px;
         }
 
-        .story-p {
-            font-size: 1.2rem;
-            line-height: 1.8;
+        .chapter-p {
+            font-size: 1.3rem;
+            line-height: 1.9;
             color: #555;
-            font-family: 'Quicksand', sans-serif;
         }
 
-        /* --- REASONS JAR: K-STATIONERY STYLE --- */
-        .reasons-container {
-            background: var(--korean-sky);
-            padding: 100px 20px;
+        /* --- 4. THE VIRTUAL STICKY NOTES --- */
+        .sticky-wall {
+            background: var(--k-blue);
+            padding: 120px 20px;
             text-align: center;
-            margin: 80px 0;
-            border-radius: 80px;
+            border-radius: 100px 0 100px 0;
+            margin: 100px 20px;
         }
 
-        .reason-sticky {
+        .sticky-note {
             background: #fff;
+            width: 90%;
             max-width: 600px;
             margin: 40px auto;
-            padding: 50px;
-            border-radius: 0 0 50px 0;
-            box-shadow: 10px 10px 0px var(--kitty-pink);
-            min-height: 200px;
+            padding: 60px;
+            box-shadow: 15px 15px 0px var(--k-pink);
+            transform: rotate(-1deg);
+            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: 0.5s;
         }
 
-        #reason-text {
+        #sticky-text {
             font-family: 'Shadows Into Light', cursive;
-            font-size: 2rem;
-            color: var(--ink);
+            font-size: 2.2rem;
+            color: var(--text);
         }
 
-        /* --- THE FINAL CINEMATIC VOW --- */
-        .final-vow-area {
+        .k-btn {
+            background: var(--k-rose);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-family: 'Quicksand';
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
+            transition: 0.3s;
+            margin-top: 30px;
+        }
+
+        .k-btn:hover { transform: scale(1.05); background: #ff3355; }
+
+        /* --- 5. THE FINAL CONFESSION --- */
+        .final-vow {
+            text-align: center;
             padding: 150px 20px;
             background: white;
-            text-align: center;
         }
 
-        .vow-title {
-            font-family: 'Pacifico';
-            font-size: 3rem;
-            color: var(--strawberry);
-            margin-bottom: 40px;
-        }
-
-        .vow-box {
+        .vow-text-box {
             max-width: 800px;
-            margin: auto;
+            margin: 0 auto;
             font-family: 'Gowun Batang';
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             line-height: 2.2;
-            color: #333;
         }
 
-        .highlight-vow {
-            border-bottom: 4px solid var(--kitty-pink);
-            font-weight: 700;
+        .eternal-truth {
+            margin-top: 100px;
+            background: var(--k-cream);
+            padding: 80px;
+            border-radius: 20px;
+            border: 2px dashed var(--k-pink);
+            display: none;
+            animation: fadeIn 2s forwards;
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .floating-heart {
+        /* --- FLOATING ELEMENTS --- */
+        .floating-kitty {
             position: fixed;
             pointer-events: none;
-            z-index: 999;
-            animation: floatUp 5s linear forwards;
+            z-index: 1000;
+            animation: floatUp 6s linear forwards;
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(110vh) scale(0.5); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- THE BOUQUET (Symmetrical & Proper) --- */
-        .bouquet-row {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            padding: 60px 0;
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .pari-name-hero { font-size: 4rem; }
+            .chapter { flex-direction: column !important; }
+            .photo-frame img { height: 350px; }
+            .sticky-note { padding: 30px; }
+            .vow-text-box { font-size: 1.2rem; }
         }
-
-        .flower-item {
-            text-align: center;
-        }
-
-        .flower-item img {
-            width: 80px;
-            animation: sway 3s ease-in-out infinite;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-10deg); }
-            50% { transform: rotate(10deg); }
-        }
-
     </style>
 </head>
 <body>
 
-    <div id="luxe-gate">
-        <div class="entrance-card">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Hello_kitty_character_portrait.png/220px-Hello_kitty_character_portrait.png" class="kitty-bow">
-            <div class="start-text">Annyeong, Pari! 👋</div>
-            <div class="k-sub">You have a special delivery from your favorite person.</div>
-            <button class="open-btn" onclick="startApp()">Open Your Gift 🎀</button>
+    <div id="gatekeeper">
+        <div class="envelope" onclick="openLetter()">
+            <div class="seal">🎀</div>
+            <p style="font-family: 'Gaegu'; margin-top: 80px; font-weight: bold;">Tap to Open</p>
         </div>
     </div>
 
-    <audio id="main-song" loop><source src="song.mp3" type="audio/mpeg"></audio>
+    <audio id="bgsong" loop><source src="song.mp3" type="audio/mpeg"></audio>
 
-    <section class="hero-banner">
-        <h2 class="bday-title">Saeng-il Chugha-hae</h2>
-        <h1 class="pari-name-luxe">Pari</h1>
-        <p style="font-family: 'Gaegu'; font-size: 1.5rem; color: var(--strawberry);">Best Girl in the World | Our Story Vol. 1</p>
+    <section class="celebration-zone">
+        <canvas id="confetti-canvas" class="canvas-confetti"></canvas>
         
-        <div class="bouquet-row">
-            <div class="flower-item"><span style="font-size: 60px;">🌻</span><p>Warmth</p></div>
-            <div class="flower-item"><span style="font-size: 60px;">🌷</span><p>Pure Love</p></div>
-            <div class="flower-item"><span style="font-size: 60px;">🌻</span><p>Sunshine</p></div>
-            <div class="flower-item"><span style="font-size: 60px;">🌷</span><p>Perfect</p></div>
-        </div>
-    </section>
-
-    <section class="story-section">
+        <h2 class="main-title" id="h-title">Happy Birthday</h2>
+        <h1 class="pari-name-hero">Pari</h1>
         
-        <div class="story-card">
-            <div class="photo-holder">
-                <div class="kitty-frame-icon">🎀</div>
-                <img src="photos/photo1.jpg" alt="Memory 1">
+        <div class="cake-container" onclick="makeWish(this)">
+            <div class="candle">
+                <div class="flame" id="my-flame"></div>
             </div>
-            <div class="story-text">
-                <span class="story-label">Chapter 1: The First Spark</span>
-                <h3 class="story-heading">Your Eyes... Oh My God.</h3>
-                <p class="story-p">
-                    The first time I really looked at you, the world went quiet. Your eyes aren't just pretty; they are a galaxy. I remember thinking, "How can one person hold so much light?" I was lost before I even knew it.
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXNqZzJueHozbmN6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v8Y8V0VvVfWvW/giphy.gif" width="200">
+            <p id="wish-prompt" style="font-family: 'Gaegu'; margin-top: 10px; font-weight: bold; color: var(--k-rose);">Make a wish & Tap the flame! 🎂</p>
+        </div>
+    </section>
+
+    <section class="story-container">
+        
+        <div class="chapter">
+            <div class="photo-frame">
+                <img src="photos/photo1.jpg" alt="Pari 1">
+            </div>
+            <div class="text-content">
+                <span class="korean-tag">Chapter 01: The First Sight</span>
+                <h3 class="chapter-title">Those Eyes...</h3>
+                <p class="chapter-p">
+                    The moment I saw you, it wasn't just your beauty that caught me—it was your eyes. They hold a universe I never want to stop exploring. There’s a magic in how you look at me that makes every worry disappear. You are perfect, inside and out.
                 </p>
             </div>
         </div>
 
-        <div class="story-card">
-            <div class="photo-holder">
-                <div class="kitty-frame-icon">🌸</div>
-                <img src="photos/photo2.jpg" alt="Memory 2">
+        <div class="chapter">
+            <div class="photo-frame">
+                <img src="photos/photo2.jpg" alt="Pari 2">
             </div>
-            <div class="story-text">
-                <span class="story-label">Chapter 2: Pure Perfection</span>
-                <h3 class="story-heading">Inside & Out.</h3>
-                <p class="story-p">
-                    I love how you laugh. I love how you think. You are perfect not because you don't have flaws, but because even your smallest details make my heart beat faster. You are the 'Pari' of my life—a literal angel.
+            <div class="text-content">
+                <span class="korean-tag">Chapter 02: My Anchor</span>
+                <h3 class="chapter-title">The Best Human I Know</h3>
+                <p class="chapter-p">
+                    It's not just about how pretty you are (and you are the prettiest girl in the world). It's about your heart. You are the kindest, most perfect person I have ever met. Being with you makes me want to be the best version of myself, just to be worthy of you.
                 </p>
             </div>
         </div>
 
-        <div class="story-card">
-            <div class="photo-holder">
-                <div class="kitty-frame-icon">🍓</div>
-                <img src="photos/photo3.jpg" alt="Memory 3">
+        <div class="chapter">
+            <div class="photo-frame">
+                <img src="photos/photo3.jpg" alt="Pari 3">
             </div>
-            <div class="story-text">
-                <span class="story-label">Chapter 3: My Only Fear</span>
-                <h3 class="story-heading">The Anchor of My Soul</h3>
-                <p class="story-p">
-                    If you ever ask why I hold you so tight, it's because the fear of losing you is greater than the fear of losing myself. You aren't just my girlfriend; you are the reason I love my life as much as I do now.
+            <div class="text-content">
+                <span class="korean-tag">Chapter 03: My Greatest Fear</span>
+                <h3 class="chapter-title">More Than My Own Life</h3>
+                <p class="chapter-p">
+                    People ask what I’m afraid of. I tell them it’s simple: <span style="color: var(--k-rose); font-weight: bold;">I’m afraid of losing you.</span> That fear is greater than any fear of losing myself. You are the heartbeat that keeps me going, and I don't ever want to imagine a world without you.
                 </p>
             </div>
         </div>
 
     </section>
 
-    <section class="reasons-container">
-        <h2 style="font-family: 'Pacifico'; font-size: 3rem; color: #0369a1;">Why I Love You (A-Z)</h2>
-        <div class="reason-sticky">
-            <div id="reason-text">"Because you make every moment feel like a movie."</div>
+    <section class="sticky-wall">
+        <h2 style="font-family: 'Pacifico'; font-size: 3rem; color: #0369a1;">Reasons I Adore You</h2>
+        <div class="sticky-note">
+            <p id="sticky-text">"Because you make my world sparkle."</p>
         </div>
-        <button class="open-btn" style="background: #0369a1;" onclick="nextReason()">Pull Another Sticky Note ✍️</button>
+        <button class="k-btn" onclick="shuffleReasons()">Pull Another Note ✍️</button>
     </section>
 
-    <section class="final-vow-area">
-        <h2 class="vow-title">My Vow to You</h2>
-        <div class="vow-box">
-            <p>
-                Pari, I want to be the one who wakes you up with flowers every single birthday. 
-                I want to be the one who sees you through every triumph and every struggle. 
-                I promise to celebrate you <span class="highlight-vow">every single day</span>, not just today.
-            </p>
-            <p>
-                "Whenever you feel like you want to ask me 'Why do I love you?', remember this: <br>
-                <strong>Because I have never felt this attached or connected to anyone else in my life. I would choose you over anyone or anything in this world without a second thought.</strong>"
-            </p>
-            <div style="font-family: 'Pacifico'; font-size: 2.5rem; margin-top: 50px; color: var(--strawberry);">
-                I love you the most. Happy Birthday!
+    <section class="final-vow">
+        <div class="vow-text-box">
+            <h2 style="font-family: 'Pacifico'; color: var(--k-rose); margin-bottom: 30px;">Happy Birthday, My Soulmate</h2>
+            <p>Pari, today I celebrate the best thing that ever happened to me. I promise to be the man who celebrates you every single day, through every high and every low. I am yours, forever and always.</p>
+            
+            <button class="k-btn" style="background: #000;" onclick="showTruth()">THE ETERNAL ANSWER 💌</button>
+
+            <div id="final-truth" class="eternal-truth">
+                <p style="font-family: 'Gowun Batang'; font-size: 1.8rem; font-style: italic;">
+                    "Whenever you feel like you want to ask me 'Why do I love you?', remember this: <br><br>
+                    <span style="font-size: 2.2rem; color: var(--k-rose); font-weight: 900; font-style: normal;">
+                        Because I have never felt this attached or connected to anyone else in my life. I would choose you over anyone or anything in this world without a second thought.
+                    </span>
+                    <br><br>
+                    I love you the most. Happy Birthday, Pari."
+                </p>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 50px; background: var(--soft-cream); font-family: 'Gaegu';">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXNqZzJueHozbmN6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6bmZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v8Y8V0VvVfWvW/giphy.gif" width="60"><br>
-        Forever & Always | For my Pari
+    <footer style="text-align: center; padding: 50px; font-family: 'Gaegu'; opacity: 0.6;">
+        Built with every ounce of my heart | For Pari 🎀
     </footer>
 
     <script>
-        const song = document.getElementById('main-song');
-        
-        function startApp() {
-            document.getElementById('luxe-gate').style.transform = 'translateY(-100%)';
+        const song = document.getElementById('bgsong');
+
+        function openLetter() {
+            document.getElementById('gatekeeper').style.transform = 'translateY(-100%)';
             song.play();
-            startHearts();
+            setTimeout(() => {
+                document.getElementById('h-title').style.opacity = '1';
+                document.getElementById('h-title').style.transform = 'translateY(0)';
+            }, 500);
+            startFloatingKitty();
         }
 
+        // 1. VIRTUAL WISH LOGIC
+        function makeWish(cake) {
+            const flame = document.getElementById('my-flame');
+            const prompt = document.getElementById('wish-prompt');
+            
+            flame.style.display = 'none';
+            prompt.innerText = "Wish Sent to the Universe! ✨";
+            prompt.style.color = "#4caf50";
+            
+            triggerConfetti();
+        }
+
+        // 2. CONFETTI EFFECT
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 10 + 5,
+                    color: ['#ff4d6d', '#ffb7c5', '#e0f2fe', '#fffeb3'][Math.floor(Math.random() * 4)],
+                    velY: Math.random() * 3 + 2,
+                    velX: Math.random() * 2 - 1
+                });
+            }
+
+            function update() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.velY;
+                    p.x += p.velX;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(p.x, p.y, p.size, p.size);
+                });
+                if (particles[0].y < canvas.height) requestAnimationFrame(update);
+            }
+            update();
+        }
+
+        // 3. SCROLL REVEAL
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.chapter').forEach(chapter => {
+                const top = chapter.getBoundingClientRect().top;
+                if (top < window.innerHeight * 0.8) {
+                    chapter.classList.add('visible');
+                }
+            });
+        });
+
+        // 4. SHUFFLE REASONS
         const reasons = [
-            "Your eyes sparkle more than the stars in Seoul.",
-            "You are more precious than any Hello Kitty collectible.",
-            "The way you handle me when I'm difficult is pure magic.",
-            "Your heart is the kindest thing I've ever known.",
-            "I love that I can be 100% myself when I'm with you.",
-            "You're the only person I want to celebrate every birthday with.",
-            "The way you look at me makes me feel like a hero.",
-            "You're not just my girl, you're my best friend.",
-            "I'd choose you in every single parallel universe.",
-            "Simply because you're Pari, and that's more than enough."
+            "Your eyes tell a story I never want to stop reading.",
+            "You are more precious than any collectible in the world.",
+            "The way you giggle when you're happy is my favorite sound.",
+            "You handle my moods with so much love and grace.",
+            "I love that you're a Hello Kitty fan—it suits your sweetness.",
+            "You make even a simple day feel like a K-Drama dream.",
+            "Because I see my entire future in your smile.",
+            "Your heart is the safest place I've ever been.",
+            "I'd choose you in every lifetime, over and over again.",
+            "Simply because you are my Pari, and that is everything."
         ];
         let rIdx = 0;
-
-        function nextReason() {
-            const txt = document.getElementById('reason-text');
+        function shuffleReasons() {
+            const txt = document.getElementById('sticky-text');
             txt.style.opacity = 0;
             setTimeout(() => {
                 rIdx = (rIdx + 1) % reasons.length;
@@ -423,19 +524,23 @@
             }, 300);
         }
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'floating-heart';
-            const icons = ['💖', '🎀', '🌸', '✨', '🍓', '🐈'];
-            heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+        // 5. FLOATING ELEMENTS
+        function startFloatingKitty() {
+            setInterval(() => {
+                const kitty = document.createElement('div');
+                kitty.className = 'floating-kitty';
+                kitty.innerHTML = ['🎀', '🌸', '✨', '🍓', '🐈'][Math.floor(Math.random() * 5)];
+                kitty.style.left = Math.random() * 100 + 'vw';
+                kitty.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                document.body.appendChild(kitty);
+                setTimeout(() => kitty.remove(), 6000);
+            }, 800);
         }
 
-        function startHearts() {
-            setInterval(createHeart, 600);
+        function showTruth() {
+            const truth = document.getElementById('final-truth');
+            truth.style.display = 'block';
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>
